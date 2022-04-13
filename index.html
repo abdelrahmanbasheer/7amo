@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airy theory - wave characteristics calculator</title>
+    <link rel="stylesheet" href="./main.css">
+    <script>
+        function calculateY() {
+
+            alert("Calculating please wait");
+
+            var pi = Math.PI;
+            var g = 9.80665;
+            var d = parseFloat(document.getElementById("d").value);
+            var T = parseFloat(document.getElementById("T").value);
+
+            var y = (g * T * T / (2 * pi)).toFixed(5);
+            var depth = "Deep zone";
+
+            if (d / y <= 0.5) {
+                // 2000 d >= y >= 2 d
+                // 2.00001 3.00001 4.00001 5.00001
+                for (var a = 2 * d; a <= 2000 * d; a += 0.00001) {
+                    if (a.toFixed(4) === (g * T * T / (2 * pi) * Math.tanh(2 * pi * d / a)).toFixed(4)) {
+                        y = a.toFixed(4);
+                        if (d / y < 0.04)
+                            depth = "Shallow zone";
+                        else
+                            depth = "Transitional zone";
+                        break;
+                    }
+                }
+            }
+            var phase_vel = (y / T).toFixed(5);
+            var fourPiDdividedY = (4 * pi * d / y).toFixed(5);
+            var groupvel = ((1 + (fourPiDdividedY) / (Math.sinh(fourPiDdividedY))) * phase_vel / 2).toFixed(5);
+            document.getElementById("wavelength").innerHTML = "Wavelength (meters): " + y;
+            document.getElementById("phase").innerHTML = "Wave Celerity (m / s): " + phase_vel;
+            document.getElementById("relativedepth").innerHTML = "Relative depth: " + depth;
+            document.getElementById("groupvel").innerHTML = "Group velocity (m / s): " + groupvel;
+            document.getElementById("d").value="";
+            document.getElementById("T").value="";
+        }
+    </script>
+</head>
+
+<body>
+    
+    <center>
+        <h1 class="name2">Airy theory - wave characteristics calculator</h1>    
+        <p>Wave period (seconds)</p>
+        <input type="number" name="" id="T" value="" placeholder="Wave period (seconds)">
+        <p>Depth (meters)</p>
+        <input type="number" name="" id="d" value="" placeholder="Depth (meters)">
+      
+        <br>
+        <br>
+        <br>
+        <input class="button1" type="submit" value="CALCULATE" onclick="calculateY();" id="subbtn">
+
+        <h4 id="relativedepth"></h4>
+        <h4 id="wavelength"></h4>
+        <h4 id="phase"></h4>
+        <h4 id="groupvel"></h4>
+    </center>   
+    <h2 class="name1">Ibrahim Mohamed </h2>
+</body>
+
+</html>
