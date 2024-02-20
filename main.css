@@ -8,7 +8,14 @@
 .name2{
     color: rgb(39, 39, 190);
     margin-bottom: 3em;
+    text-align: center;
 }
+input {
+    border: none;
+    border-bottom: 2px solid lightblue;
+    margin: 20px;
+    outline: none;
+  }
 .button1{
     background-color: lightblue;
     color: white;
@@ -23,10 +30,29 @@
     cursor: pointer;
 }
 body{
-    background-image: url("./output-onlinepngtools.png");
+    background-image: url("./WhatsApp Image 2024-02-20 at 23.44.16_bd35089c.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family:Helvetica, sans-serif;
 }
 p{
     font-weight: bold;
     font-size: 1.1em;
+    margin-top: 10px;
+}
+.cont{
+   
+    text-align: center;
+    background: #ffffff;
+    width: 40%;
+    height: 50vh;
+    border-radius: 10px;
+    margin-left: 30%;
+
+}
+.cont2{
+    text-align: center;
+    padding-top: 10%;
+
+
 }
